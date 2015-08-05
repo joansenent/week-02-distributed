@@ -51,12 +51,13 @@ class TestArrays < MiniTest::Unit::TestCase
   #   puts "This is count #{number}"
   # end
   def test_create_a_new_array_with_odd_numbers_using_for_item_in_array
-    skip "Waiting to be implemented"
     array = [1,6,3,9,1,1,2,3]
     new_array = []
 
     for number in array 
-      # build up the new_array here
+        if number.odd?
+          new_array << number
+        end
     end    
     assert_equal([1,3,9,1,1,3], new_array)    
   end  
@@ -74,12 +75,13 @@ class TestArrays < MiniTest::Unit::TestCase
   # Docs: http://ruby-doc.org/core-2.2.0/Array.html#method-i-each
 
   def test_create_a_new_array_with_odd_numbers_using_each
-    skip "Waiting to be implemented"
     array = [1,6,3,9,1,1,2,3]
     new_array = []
 
     array.each do | number |
-      # build up the new_array here
+      if number.odd?
+        new_array << number
+      end
     end    
     assert_equal([1,3,9,1,1,3], new_array)   
 
@@ -91,13 +93,13 @@ class TestArrays < MiniTest::Unit::TestCase
   # This returns a new array containing all elements of where the the given block returns a true value.
   # Docs: http://ruby-doc.org/core-2.2.0/Array.html#method-i-select
   def test_create_a_new_array_with_odd_numbers_using_select
-    skip "Waiting to be implemented"
     array = [1,6,3,9,1,1,2,3]
     new_array = []
 
     
     new_array = array.select do | number |
         # make this block return true for odd numbers and false for even numbers
+        number.odd?
       end    
     assert_equal([1,3,9,1,1,3], new_array)    
   end  
@@ -114,7 +116,7 @@ class TestArrays < MiniTest::Unit::TestCase
     # use which ever you prefer
     # make this block return false for odd numbers and true for even numbers
     # this will reject the even numbers
-    new_array = array.reject { | number |   }
+    new_array = array.reject { | number | if array[number].even? do }
     assert_equal([1,3,9,1,1,3], new_array)    
   end 
 
@@ -150,17 +152,16 @@ class TestArrays < MiniTest::Unit::TestCase
   def test_count_number_of_even_numbers
     skip "Waiting to be implemented"
     array = [1,6,3,9,1,1,2,3]
-    count_of_even_numbers = 0 # replace 0 with the logic to count the number of even numbers    
+    count_of_even_numbers = array.even?.count # replace 0 with the logic to count the number of even numbers    
     assert_equal(2, count_of_even_numbers)    
   end 
 
   # Verify that the list contains a number
   # Docs: http://ruby-doc.org/core-2.2.0/Array.html#method-i-include-3F
   def test_that_the_list_contains_a_number
-    skip "Waiting to be implemented"
     array = [1,6,3,9,1,1,2,3]
     number = 9
-    included = false # replace false with the logic to check if 'number' is in the 'array'  
+    included = array.include?(number) # replace false with the logic to check if 'number' is in the 'array'  
     assert(included)    
   end 
 
@@ -197,23 +198,32 @@ class TestArrays < MiniTest::Unit::TestCase
 
   # Find the maximum number in the list  
   def test_find_the_largest_number_in_a_list
-    skip "Waiting to be implemented"
+    # skip "Waiting to be implemented"
     array = [1,6,3,9,1,1,2,3] 
-    max = 0 # replace 0 with the logic to find the largest number
+    max = array.max # replace 0 with the logic to find the largest number
     assert_equal(9, max) 
   end 
 
   # Find the smallest number in the list  
   def test_find_the_smallest_number_in_a_list
-    skip "Waiting to be implemented"
+    # skip "Waiting to be implemented"
     # write this test and implement the logic
+    array = [1,6,3,5,6,2,5]
+    min = array.min
+    assert_equal(1, min)
   end 
 
   # Count the number of vowels in the 'input' string
   def test_count_the_number_of_vowels_in_a_string
-    skip "Waiting to be implemented"
+    # skip "Waiting to be implemented"
+    vowels = ['a','e','i','o','u']
     input = "Hello world"
     # write the rest of this test before implementing the logic
+    sum = 0
+    input.split("").each do |char|
+      sum +=1 if vowels.include?(char)
+    end
+    assert_equal(3, sum)
   end 
 
   # Test setting and getting values from a hash
